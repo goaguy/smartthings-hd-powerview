@@ -56,9 +56,8 @@ metadata {
         // define top color status block
         multiAttributeTile(name:"windowShade", type: "lighting", width: 6, height: 4, canChangeIcon: true) {
             tileAttribute ("device.windowShade", key: "PRIMARY_CONTROL") {
-                attributeState "open", label:'V. Open', action:"windowShade.close", icon:"st.Home.home9", backgroundColor:"#00a0dc", nextState:"closing"
-                attributeState "partial_vane", label:'V. Partial', action:"windowShade.close", icon:"st.Home.home9", backgroundColor:"#00a0dc", nextState:"closing"
-                attributeState "closed", label:'V. Closed', action:"windowShade.open", icon:"st.Home.home9", backgroundColor:"#ffffff", nextState:"opening"
+                attributeState "open", label:'Open', action:"windowShade.close", icon:"st.Home.home9", backgroundColor:"#00a0dc", nextState:"closing"
+                attributeState "closed", label:'Closed', action:"windowShade.open", icon:"st.Home.home9", backgroundColor:"#ffffff", nextState:"opening"
                 attributeState "opening", label:'Opening', action:"windowShade.close", icon:"st.Home.home9", backgroundColor:"#00a0dc", nextState:"open"
                 attributeState "closing", label:'Closing', action:"windowShade.open", icon:"st.Home.home9", backgroundColor:"#ffffff", nextState:"opening"
             }
@@ -79,12 +78,6 @@ metadata {
             state("default", label:'Open shade', action:"on",
                 icon:"st.doors.garage.garage-opening")
         }
-        // open vanes
-        standardTile("on", "device.windowShade", width: 2, height: 2,
-                    inactiveLabel: false, decoration: "flat") {
-            state("default", label:'Open vanes', action:"open",
-                icon:"st.doors.garage.garage-opening")
-        }
         // refresh
         standardTile("refresh", "device.switch", width: 2, height: 2,
                     inactiveLabel: false, decoration: "flat") {
@@ -97,12 +90,6 @@ metadata {
         standardTile("close", "device.switch", width: 2, height: 2,
                     inactiveLabel: false, decoration: "flat") {
             state("default", label:'Close shade', action:"off",
-                icon:"st.doors.garage.garage-closing")
-        }
-        // close vanes
-        standardTile("off", "device.windowShade", width: 2, height: 2,
-                    inactiveLabel: false, decoration: "flat") {
-            state("default", label:'Close vanes', action:"close",
                 icon:"st.doors.garage.garage-closing")
         }
         // battery level
