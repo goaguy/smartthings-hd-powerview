@@ -56,8 +56,8 @@ metadata {
         // define top color status block
         multiAttributeTile(name:"windowShade", type: "lighting", width: 6, height: 4, canChangeIcon: true) {
             tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
-                attributeState "open", label:'Open', action:"on", icon:"st.Home.home9", backgroundColor:"#00a0dc", nextState:"closed"
-                attributeState "closed", label:'Closed', action:"off", icon:"st.Home.home9", backgroundColor:"#ffffff", nextState:"open"
+                attributeState "open", label:'Open', action:"off", icon:"st.Home.home9", backgroundColor:"#00a0dc", nextState:"closed"
+                attributeState "closed", label:'Closed', action:"on", icon:"st.Home.home9", backgroundColor:"#ffffff", nextState:"open"
             }
             tileAttribute ("device.level", key: "SLIDER_CONTROL") {
                 attributeState "level", label: "${currentValue}", action:"switch level.setLevel"
