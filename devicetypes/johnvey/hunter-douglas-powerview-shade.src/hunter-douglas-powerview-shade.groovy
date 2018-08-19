@@ -55,11 +55,9 @@ metadata {
     tiles(scale: 2) {
         // define top color status block
         multiAttributeTile(name:"windowShade", type: "lighting", width: 6, height: 4, canChangeIcon: true) {
-            tileAttribute ("device.windowShade", key: "PRIMARY_CONTROL") {
-                attributeState "open", label:'Open', action:"windowShade.close", icon:"st.Home.home9", backgroundColor:"#00a0dc", nextState:"closing"
-                attributeState "closed", label:'Closed', action:"windowShade.open", icon:"st.Home.home9", backgroundColor:"#ffffff", nextState:"opening"
-                attributeState "opening", label:'Opening', action:"windowShade.close", icon:"st.Home.home9", backgroundColor:"#00a0dc", nextState:"open"
-                attributeState "closing", label:'Closing', action:"windowShade.open", icon:"st.Home.home9", backgroundColor:"#ffffff", nextState:"opening"
+            tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
+                attributeState "open", label:'Open', action:"on", icon:"st.Home.home9", backgroundColor:"#00a0dc", nextState:"closed"
+                attributeState "closed", label:'Closed', action:"off", icon:"st.Home.home9", backgroundColor:"#ffffff", nextState:"open"
             }
             tileAttribute ("device.level", key: "SLIDER_CONTROL") {
                 attributeState "level", label: "${currentValue}", action:"switch level.setLevel"
@@ -288,7 +286,7 @@ def parseShadeData(payload) {
             sendEvent(name: 'switch', value: 'off')            
         }
         // if shade level is reported, then vane is closed
-        sendEvent(name: 'windowShade', value: 'closed')
+        // sendEvent(name: 'windowShade', value: 'closed')
 
     } else if (shade.positions.posKind1 == ShadeComponentType.VANE) {
         def vaneLevel = (int) shade.positions.position1 / ShadeMaxPosition.VANE * 100
@@ -301,7 +299,7 @@ def parseShadeData(payload) {
         } else {
             stateName = 'closed'
         }
-        sendEvent(name: 'windowShade', value: stateName)
+        // sendEvent(name: 'windowShade', value: stateName)
         sendEvent(name: 'switch', value: 'off')
         // if vane level is reported, then shade is closed
         sendEvent(name: 'level', value: 0)
